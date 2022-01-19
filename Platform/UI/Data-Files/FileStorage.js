@@ -31,6 +31,10 @@ function newFileStorage(host, port, scheme='http') {
 
   async function getFileFromHost(filePath, callBackFunction, pathComplete) {
     try {
+	// Sanitizing filePath
+	  if (filePath.includes(':')){
+	  filePath = filePath.replace(':', '_COLON_')
+	  }						   
       if (INFO_LOG === true) { logger.write('[INFO] getFileFromHost -> Entering function.') }
 
       let folder = ''

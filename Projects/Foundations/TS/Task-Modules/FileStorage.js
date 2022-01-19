@@ -73,6 +73,10 @@ exports.newFileStorage = function newFileStorage(processIndex, host, port) {
 
         function recursiveGetTextFile(filePath, callBackFunction, noRetry, canUsePrevious) {
             let fileDoesNotExist = false
+			// Sanitizing filePath
+			if (filePath.includes(':')){
+				filePath = filePath.replace(':', '_COLON_')
+			}			 
 
             /* Choose path for either bots or data */
             let fileLocation
